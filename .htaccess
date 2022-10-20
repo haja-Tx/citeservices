@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	RewriteBase /
+
+	RewriteCond %{REQUEST_URI} !^/public/
+	RewriteRule ^(.*)$ /public/$1 [L]
+</IfModule>
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^citeservices\.yo\.fr$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.citeservices\.yo\.fr$
+RewriteRule ^/?$ "https\:\/\/citeservices\.yo\.fr\/" [R=301,L]

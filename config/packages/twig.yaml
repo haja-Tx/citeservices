@@ -1,0 +1,6 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    globals:
+        root_path: '%kernel.project_dir%'
+    form_themes: ['bootstrap_4_layout.html.twig']
+    

@@ -1,0 +1,47 @@
+{
+    "name": "wandi/easyadmin-plus-bundle",
+    "type": "symfony-bundle",
+    "description": "Wandi/EasyAdminPlusBundle",
+    "keywords": [
+        "Symfony",
+        "Bundle",
+        "Wandi",
+        "EasyAdminPlusBundle",
+        "EasyAdminBundle",
+        "Admin"
+    ],
+    "homepage": "https://github.com/WandiParis/EasyAdminPlusBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jacques N. de Lamballerie",
+            "email": "jndl@wandi.fr"
+        },
+        {
+            "name": "Laurent Fouquet",
+            "email": "laurent.fouquet@wandi.fr"
+        },
+        {
+            "name": "Laurent Bientz",
+            "email": "laurent.bientz@wandi.fr"
+        },
+        {
+            "name": "Jean-Baptiste Chateaux",
+            "email": "jean-baptiste.chateaux@wandi.fr"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.1",
+        "easycorp/easyadmin-bundle": "^2.0.0"
+    },
+    "require-dev": {
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Wandi\\EasyAdminPlusBundle\\": "src/"
+        }
+    }
+}

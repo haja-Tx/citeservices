@@ -1,0 +1,17 @@
+{# templates/bundles/EasyAdminBundle/default/show.html.twig #}
+
+
+{# DO THIS: the '!' symbol tells Symfony to extend from the original template #}
+{% extends '@!EasyAdmin/default/show.html.twig' %}
+
+{% block content_title %}
+    <div class="col-md-5" id="head">
+        <img height="100" src="{{ asset('assets/images/logo.png') }}"/>
+        <div class="info" style="text-align:left">
+            <p>Multiservices en Informatiques et Multimedia</p>
+        </div>
+        
+    </div>
+    
+    
+{% endblock %}

@@ -1,0 +1,23 @@
+easy_admin:
+    entities:
+       Connection:
+          class: App\Entity\Connection
+          list:
+            actions:
+              - { name: 'edit', icon: 'pencil', css_class: 'btn btn-default' }
+              - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: false }
+              - { name: 'export', css_class: 'hidden'  }
+            fields:
+              - date
+              - { property: 'name', label: 'Poste'}
+              - montant
+          new:
+            fields:
+              # - date
+              - { property: 'name', label: 'Poste'}
+              - montant
+          edit:
+            fields:
+              - name
+              - montant
+          

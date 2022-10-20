@@ -1,0 +1,17 @@
+grumphp:
+    tasks:
+        phpcs:
+            whitelist_patterns:
+                - /^src\/(.*)/
+        phpmd:
+            whitelist_patterns:
+                - /^src\/(.*)/
+            ruleset:
+                - ./ruleset.xml
+        phpunit: null
+        phpspec: null
+        psalm:
+            config: psalm.xml
+            threads: 1
+            triggered_by: ['php']
+            show_info: true

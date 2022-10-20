@@ -1,0 +1,107 @@
+{# {% extends 'base.html.twig' %} #}
+{% extends '@EasyAdmin/Default/layout.html.twig' %}
+{% block page_title %}
+   
+    Tableau de bord
+    
+{% endblock %}
+{# Let\'s remove/empty the header #}
+{# {% block content_header_wrapper %}
+    
+{% endblock content_header_wrapper %} #}
+{% block content_title %}
+    
+                <h1 class="title">Graphes</h1>
+       
+{% endblock %}
+{# The main page content block #}
+{% block global_actions %}
+                
+                    
+                  <div class="form-row align-items-center">
+                    <label for="periode">Préference: </label>
+                    <div class="col-auto my-1">
+                      
+                      <select name="periode" class="form-control" id="periode">
+                          <option>Jour</option>
+                          <option>Mois</option>
+                          <option>Année</option>
+                      </select>
+                    </div>
+                  </div>
+               
+            {% endblock %}
+{% block main %}
+<div class="chart">
+    <div class="container-fluid">
+      <div class="row" id="circle">
+          <div class="loader">
+            <div class="loader">
+                <div class="loader">
+                   <div class="loader">
+
+                   </div>
+                </div>
+            </div>
+          </div>
+      </div> 
+      <div class="load">
+        <div id="client-loop-container">
+             {% include 'chart/chart.html.twig' %}
+        </div>
+      </div>
+      <div class="row">
+          <div id="div_chart" class="col-md-10"></div>
+      </div>
+    </div>
+</div>
+
+
+    <script>
+        
+    $(document).ready(function(){
+        $("#circle").hide();
+
+        $('#periode').change(function(){
+            var periode = $(this).val();
+            if(periode != '')
+            {
+                load_monthwise_data(periode);
+            }
+        });
+
+        function load_monthwise_data(periode)
+        {
+            $.ajax({
+                url:"{{ path('test') }}",
+                method:"POST",
+                data:{periode:periode},
+                dataType:"JSON",
+                beforeSend: function(){
+                  $("#circle").show();
+                },
+                success:function(data)
+                {
+                    $("#client-loop-container").html(data.html);
+                    setTimeout(
+                      function() 
+                      {
+                        $("#circle").hide();
+                      }, 1000);
+                    
+                }
+            });
+        }
+
+    });
+    {{ gc_draw(piechart, 'div_chart') }}
+    </script>
+{% endblock %}
+{% block javascript %}
+  
+{% endblock %}
+
+{# Let\'s remove/empty the footer #}
+{# {% block content_footer_wrapper %} {% endblock content_footer_wrapper %} #}
+
+

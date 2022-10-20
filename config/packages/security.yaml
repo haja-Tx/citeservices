@@ -1,0 +1,53 @@
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+    role_hierarchy:
+        ROLE_GERANT: [ROLE_GERANT, ROLE_USER]
+        ROLE_ADMIN: [ROLE_ADMIN, ROLE_GERANT, ROLE_ALLOWED_TO_SWITCH]
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        secured_area:
+            pattern: ^/
+            anonymous: ~
+            form_login:
+                # Le nom de la route de la page de connexion
+                check_path: security_login
+                # Le nom de la route où se trouve le formulaire de connexion
+                # Si un utilisateur tente d'acceder à une page protégée sans en avoir les droits
+                # il sera redirigé sur cette page
+                login_path: security_login
+                # Securisation des formulaires
+                csrf_token_generator: security.csrf.token_manager
+                # La page par defaut apres une connexion reussie
+                default_target_path: home
+                provider: app_user_provider
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                target: security_login
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/private, roles: ROLE_USER }
+        

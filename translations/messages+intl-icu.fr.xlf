@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="K0zCwzR" resname="Export Excel">
+        <source>Export Excel</source>
+        <target>__Export Excel</target>
+      </trans-unit>
+      <trans-unit id="c7JFamz" resname="app.export_csv">
+        <source>app.export_csv</source>
+        <target>__app.export_csv</target>
+      </trans-unit>
+      <trans-unit id="0xSwaIv" resname="Email could not be found.">
+        <source>Email could not be found.</source>
+        <target>Adresse mail introuvable.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

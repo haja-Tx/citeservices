@@ -1,0 +1,28 @@
+{# templates/bundles/EasyAdminBundle/default/list.html.twig #}
+
+{% extends '@!EasyAdmin/default/list.html.twig' %}
+
+{% block new_action %}
+    <div class="button-action">
+        <a class="{{ _action.css_class|default('') }}" href="{{ path('easyadmin', _request_parameters|merge({action: 'new'})) }}" target="{{ _action.target }}" rel="noopener noreferrer">
+            {% if _action.icon %}<i class="fa fa-fw fa-{{ _action.icon }}"></i>{% endif %}
+            {{ _action.label is defined and not _action.label is empty ? _action.label|trans(_trans_parameters) }}
+        </a>
+
+        {% if easyadmin_action_is_enabled_for_list_view('export', _entity_config.name) and is_granted('ROLE_GERANT') %}
+            <a class="{{ _action.css_class|default('') }}" href="{{ path('easyadmin', _request_parameters|merge({action: 'export'})) }}" target="{{ _action.target }}" rel="noopener noreferrer">
+                <i class="fa fa-file-excel"></i>
+                {# {{ 'Export Excel'|trans }} #}
+                Exporter Excel
+            </a>
+        {% endif %}
+    </div>
+    {% for message in app.flashes('warning') %}
+        
+            <div id="flash-warning" class="flash-warning">
+                {{ message }}
+            </div>
+        
+        
+    {% endfor %}
+{% endblock new_action %}

@@ -1,0 +1,17 @@
+easy_admin:
+  entities:
+    Stock:
+          class: App\Entity\Stock
+          list:
+            actions:
+                - { name: 'edit', icon: 'pencil', css_class: 'btn btn-default' }
+                - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: false }
+          new:
+            fields:
+              - name
+              - quantity
+          edit:
+            fields:
+              - name
+              - quantity
+       

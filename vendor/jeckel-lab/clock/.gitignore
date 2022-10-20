@@ -1,0 +1,9 @@
+# IDE specifics
+/.idea
+
+# 3rd party
+/vendor/
+
+# Temporary files
+/.phpunit.result.cache
+/coverage.xml

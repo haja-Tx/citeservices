@@ -1,0 +1,16 @@
+easy_admin:
+    entities:
+       Defectueux:
+          # controller: App\Controller\FactureController
+          class: App\Entity\Defectueux
+          export:
+          disabled_actions: ['delete']
+          list:
+            actions:
+              - { name: 'show', icon: 'eye', label: false }
+          new:
+            fields:
+              - { property: 'date' ,type: 'datetime',type_options: {disabled: true}}
+              - stock
+              - quantity
+              - { property: 'remarque', type: 'textarea'}

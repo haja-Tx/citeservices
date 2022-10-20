@@ -1,0 +1,36 @@
+imports:
+    - { resource: config.yaml }
+
+easy_admin_extension:
+    embedded_list:
+        open_new_tab: false
+
+easy_admin:
+    entities:
+        Category:
+            class: AppTestBundle\Entity\FunctionalTests\Category
+            form:
+                fields:
+                    - { property: name }
+                    - { property: products, label: '', type: embedded_list }
+            show:
+                fields:
+                    - { property: name }
+                    - { property: products, label: '', type: embedded_list }
+        Product:
+            class: AppTestBundle\Entity\FunctionalTests\Product
+            list:
+                sort: [createdAt, DESC]
+        Purchase:
+            class: AppTestBundle\Entity\FunctionalTests\Purchase
+            embeddedList:
+                open_new_tab: true
+                sort: [createdAt, DESC]
+        AdminGroup:
+            class: AppTestBundle\Entity\FunctionalTests\AdminGroup
+            form:
+                fields:
+                    - { property: name }
+                    - { property: users, label: '', type: embedded_list }
+        AdminUser:
+            class: AppTestBundle\Entity\FunctionalTests\AdminUser

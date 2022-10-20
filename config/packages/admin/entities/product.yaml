@@ -1,0 +1,22 @@
+easy_admin:
+   entities:
+       Product: 
+          class: App\Entity\Product
+          role: ROLE_GERANT
+          list:
+            help: 'Liste des produits disponible'
+            title: "Nos Produits"
+            actions:
+              - { name: 'edit', icon: 'pencil', css_class: 'btn btn-default' }
+              - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: false }
+          new:
+            fields:
+              - name
+              - prix
+              - stock
+              # - { property: 'ventes', type: 'collection', type_options: {entry_type: 'App\Form\VenteType', by_reference: false}}
+          edit:
+            fields:
+              - name
+              - prix
+

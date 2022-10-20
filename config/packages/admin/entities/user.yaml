@@ -1,0 +1,72 @@
+easy_admin:
+   entities:
+       # List the entity class name you want to manage
+        Employer:
+          class: App\Entity\User
+          role: ROLE_ADMIN
+          disabled_actions: ['new','edit']
+          password_encoding: { algorithm: 'bcrypt' }
+          list:
+            dql_filter: "entity.roles LIKE '%%ROLE_EMPLOYER%%'"
+            actions:
+              
+              - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: false }
+
+            fields:
+              # - { property: 'image', template: 'vich_uploader_image.html.twig' }
+              - { property: 'image', type: 'image', base_path: '%app.path.user_images%' }
+              - pseudo
+              - email
+
+        Admin:
+          class: App\Entity\User
+          role: ROLE_ADMIN
+          disabled_actions: ['new','edit']
+          password_encoding: { algorithm: 'bcrypt' }
+          list:
+            dql_filter: "entity.roles LIKE '%%ROLE_GERANT%%'"
+            actions:
+              
+              - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: false }
+            fields:
+              - { property: 'image', template: 'vich_uploader_image.html.twig' }
+              - pseudo
+              - email
+        User:
+          class: App\Entity\User
+          role: ROLE_ADMIN
+          # disabled_actions: ['list']
+          password_encoding: { algorithm: 'bcrypt' }
+          new:
+            fields:
+              - { property: 'imageFile', type: 'vich_image' }
+
+              - { property: pseudo, label: pseudo }
+                    # some fields like username here
+              - { property: email, label: adresse email, type: 'email' }
+                    # plain password 
+              - { property: password, label: mot de passe, type: 'password' }
+
+              - {property: 'roles', type: choice, type_options:{ required: false, multiple: true, expanded: false, choices: { 'Employer': 'ROLE_EMPLOYER', 'Gérant': 'ROLE_GERANT', 'Administrateur': 'ROLE_ADMIN' }}}
+          edit:
+            fields:
+              - { property: 'imageFile', type: 'vich_image' }
+
+              - { property: pseudo, label: pseudo }
+                    # some fields like username here
+              - { property: email, label: adresse email, type: 'email' }
+                    # plain password 
+              # - { property: password, label: mot de passe, type: 'password' }
+
+              - {property: 'roles', type: choice, type_options:{ required: false, by_reference: false, multiple: true, expanded: false, choices: { 'Employer': 'ROLE_EMPLOYER', 'Gérant': 'ROLE_GERANT', 'Administrateur': 'ROLE_ADMIN' }}}
+              - { property: password, label: mot de passe, type: 'password' }
+          list:
+            actions:
+              - { name: 'new', icon: 'user', css_class: 'btn btn-primary', label: 'Nouveau personnel' }
+              - { name: 'edit', icon: 'pencil', css_class: 'btn btn-default' }
+              - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: false }
+            fields:
+              - pseudo
+              - { property: 'image', template: 'vich_uploader_image.html.twig' }
+              - email
+

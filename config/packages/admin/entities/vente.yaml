@@ -1,0 +1,44 @@
+easy_admin:
+   entities:
+       # List the entity class name you want to manage
+       Vente:
+          controller: App\Controller\AdminController
+          class: App\Entity\Vente
+          
+          # form:
+          #     type: App\Form\VenteType
+          delete:
+                role: ROLE_ADMIN
+          list:
+            # item_permission: ROLE_ADMIN
+            actions: 
+              - { name: 'export', icon: 'file-pdf', css_class: 'hidden', label: 'fichier pdf',  }
+              - { name: 'edit', icon: 'pencil', css_class: 'btn btn-default' }
+              - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: false }
+            fields:
+              - date
+              - produit
+              - pu
+              - quantity
+              - prixTotal
+
+          new: 
+            fields: 
+              # - { property: 'date' ,type: 'datetime',type_options: {disabled: true}}
+                         
+              - { property: 'produit', type_options: { required: true } }
+              - { property: 'quantity', label: 'Quantité'}
+              # - prixTotal
+              - { property: 'prixTotal', type: 'hidden', type_options: { empty_data: 0, required: false, disabled: true } }
+              - { property: 'pu', type: 'hidden', type_options: { empty_data: 0 } }
+          edit: 
+            fields: 
+              - { property: 'date' ,type: 'datetime',type_options: {disabled: true}}
+                         
+              - { property: 'produit', type_options: { required: true } }
+              - quantity
+              - { property: 'factures',type_options: {by_reference: false}} 
+              - { property: 'prixTotal', type: 'hidden', type_options: { empty_data: 0, required: false } }
+              - { property: 'pu', type: 'hidden', type_options: { empty_data: 0 } }
+       
+

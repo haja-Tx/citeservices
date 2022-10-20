@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+{# {% extends '@EasyAdmin/Default/layout.html.twig' %} #}
+
+{% block title %}Facture{% endblock %}
+
+{% block body %}
+<style>
+body {
+    font: normal 10px Verdana, Arial, sans-serif;
+}
+td, th, tr { 
+  padding: 0px; 
+  text-align: left; 
+}
+   /* .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+ Zebra striping 
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+th { 
+  background: #333; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}
+.pt{
+    text-align: right;
+}*/
+</style>
+
+<div class="">
+    <div class="row">
+        
+        <div class="col-md-6" style="text-align:left">
+        	<img height="60" src="{{ root_path }}/public/assets/images/logo.png"/>
+            <p><b>Multiservices en Informatiques et Multimedia</b></p>
+
+            STAT : 61906 11 20120 04461 / NIF : 700 099 75 90<br>
+            Lot : IAH 63 Avaratsena Ambohidrapeto <br>
+            Contact: 020 22 251 97 - 034 15 872 79 <br>
+            csciteservices@gmail.com
+        </div>
+        <div class="" style="float:right">
+            
+            Antananarivo le {{ date|format_datetime('full', 'none', locale='fr') }}
+        </div>
+        
+    </div>
+    <div class="row" style="text-align:center">
+        <h6> {{ note|upper }} </h6>
+    </div>
+    <div class="">
+       <p>N° : {{ id }} - Doit à {{ name|upper }}</p>
+       Vendeur:  {{ vendor|capitalize }}
+                <div style="padding-top:10px;">
+                    <table class="table table">
+                        <thead>
+                            <tr>
+                                <th>Désignation</th>
+                                <th>Prix unitaire</th>
+                                <th>Quantité</th>
+                                <th>Prix total</th>
+                            </tr>
+                            
+                        </thead>
+                        <tbody>
+                            {% for item in ventes %} 
+                            <tr>
+                                <td> {{item.produit}} </td>
+                                <td> {{item.pu}} </td>
+                                <td> {{item.quantity}} </td>
+                                <td class="pt"> {{item.prixTotal}} Ar</td>                           
+                            </tr>
+                            {% endfor %}
+                            {% for item in connexion %} 
+                            <tr>
+                                <td> Connection Internet ref:{{item.name}}</td>
+                                <td> - </td>
+                                <td> - </td>
+                                <td class="pt"> {{item.montant}} Ar</td>                           
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>TVA</td>
+                                <td class="pt"> 0</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Total ttc</td>
+                                <td class="pt"> {{ total }} Ar</td>
+                            </tr>
+                        </tbody>
+                       
+                    </table>
+
+                </div>
+                <div>
+                    <p> </p>
+                    <p>Arrêtée la présente {{ note }} à la somme de : <b>{{ totalstr }} Ariary</b></p>
+                </div>
+                <div style="text-align:center; width:25%; float:right">
+                    <p>Le résponsable,</p>
+                    
+                </div>
+                
+
+                
+           
+    </div>
+    
+
+</div>
+{% endblock %}

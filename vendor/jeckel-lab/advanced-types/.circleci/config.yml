@@ -1,0 +1,114 @@
+# PHP CircleCI 2.1 configuration file
+#
+# Check https://circleci.com/docs/2.1/language-php/ for more details
+#
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: jeckel/php-test:7.2-cli-alpine
+    working_directory: /app/project
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            # "composer.lock" can be used if it is committed to the repo
+            - v1-dependencies-{{ checksum "composer.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: composer install -n --prefer-dist --ignore-platform-reqs
+
+      - save_cache:
+          key: v1-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
+      - persist_to_workspace:
+          root: /app
+          paths: project
+
+  phpcs:
+    docker:
+      - image: jeckel/php-test:7.2-cli-alpine
+    working_directory: /app/project
+    steps:
+      - attach_workspace:
+          at: /app
+      - run: ./vendor/bin/phpcs
+
+  phpmd:
+    docker:
+      - image: jeckel/php-test:7.2-cli-alpine
+    working_directory: /app/project
+    steps:
+      - attach_workspace:
+          at: /app
+      - run: ./vendor/bin/phpmd src text cleancode,codesize,design,naming,unusedcode
+
+    # Test security issues in dependencies
+  security_check:
+    docker:
+      - image: jeckel/php-test:7.2-cli-alpine
+    working_directory: /app/project
+    steps:
+      - checkout
+      - run: composer update --dry-run roave/security-advisories
+
+  phpunit:
+    docker:
+      - image: jeckel/php-test:7.3-cli-alpine
+    working_directory: /app/project
+    steps:
+      - attach_workspace:
+          at: /app
+      - run: ./vendor/bin/phpunit --coverage-clover=coverage.xml
+
+  # Check static analysis
+  psalm:
+    docker:
+      - image: jeckel/php-test:7.3-cli-alpine
+    working_directory: /app/project
+    steps:
+      - attach_workspace:
+          at: /app
+      - run: ./vendor/bin/psalm
+
+  # Final build used to validate the whole test
+  # @see workflows for dependencies
+  builds_completed:
+    docker:
+      - image: docker:git
+    steps:
+      - run: echo "Builds completed with success"
+
+# Define the workflow:
+workflows:
+  version: 2
+  # Always run code-quality
+  build:
+    jobs:
+      # Always run:
+      - build
+      - phpcs:
+          requires:
+            - build
+      - phpmd:
+          requires:
+            - build
+      - phpunit:
+          requires:
+            - build
+      - psalm:
+          requires:
+            - build
+      - security_check
+      - builds_completed:
+          requires:
+            - phpcs
+            - phpmd
+            - phpunit
+            - psalm
+            - security_check

@@ -1,0 +1,11 @@
+/vendor
+/.idea
+/composer.lock
+
+/php.sh
+/.phpcs-cache
+
+/.phpunit.result.cache
+
+/coverage.xml
+/phpspec-coverage.xml

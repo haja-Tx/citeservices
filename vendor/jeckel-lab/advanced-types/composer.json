@@ -1,0 +1,48 @@
+{
+    "name": "jeckel-lab/advanced-types",
+    "description": "Advanced PHP types for DDD projects",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Julien Mercier-Rojas",
+            "email": "julien@jeckel-lab.fr"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7.2",
+        "ext-json": "*",
+        "marc-mabe/php-enum": "^4.1",
+        "beberlei/assert": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "JeckelLab\\AdvancedTypes\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\JeckelLab\\AdvancedTypes\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master",
+        "squizlabs/php_codesniffer": "^3.5",
+        "phpmd/phpmd": "^2.7",
+        "doctrine/dbal": "^2.10",
+        "twig/twig": "^3.0",
+        "symfony/http-kernel": "^4 || ^5",
+        "phpro/grumphp": "^0.19.0",
+        "phpunit/phpunit": "^8.5",
+        "vimeo/psalm": "^3.8",
+        "symfony/form": "^5.0",
+        "phpspec/phpspec": "^6.1",
+        "friends-of-phpspec/phpspec-code-coverage": "^4.3",
+        "fzaninotto/faker": "^1.9",
+        "d0x2f/clover-merge": "^1.0"
+    },
+    "suggest": {
+        "doctrine/dbal": "Integrate Value Object as doctrine types"
+    }
+}

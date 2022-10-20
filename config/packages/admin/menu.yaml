@@ -1,0 +1,37 @@
+easy_admin:
+  design:
+    menu:
+        - label: 'Administration'
+          icon: 'cogs'
+          permission: 'ROLE_GERANT'
+        - label: 'Tableau de bord'
+          route: 'chart'
+          icon: 'line-chart'
+          permission: 'ROLE_ADMIN'
+        - label: 'Personnels'
+          icon: 'users'
+          permission: 'ROLE_ADMIN'
+          children:
+                            # - { entity: 'User', label: 'Ajouter Personnel', params: { action: 'new' }, icon: 'plus-square' }
+                  - { entity: 'User', label: 'Liste des Personnels', icon: 'plus-square' }
+                  - { entity: 'Employer', label: 'Employers', icon: 'user' }
+                  - { entity: 'Admin', label: 'Gérants', icon: 'user-secret' }
+        - label: 'Gestion Produit'
+          icon: 'cubes'
+          permission: 'ROLE_GERANT'
+          children:
+                  - { entity: 'Product', label: 'Produit', icon: 'tags' }
+                  - { entity: 'Stock', label: 'Inventaire Stock', icon: 'book' }  
+        - { label: 'Gestion Tsena'}                  
+        - label: 'Vente'
+          icon: 'folder'
+          children:
+                  - { entity: 'Vente', label: 'Nouveau vente', params: { action: 'new' }, icon: 'plus-square' }
+                  - { entity: 'Vente', label: 'Historique de vente', icon: 'calendar' }
+                  - { entity: 'Facture', label: 'Factures', icon: 'tasks' }
+        - label: 'Cyber'
+          icon: 'desktop'
+          children:
+                  - { entity: 'Connection', label: 'Nouveau connection', params: { action: 'new' }, icon: 'plus-square' }
+                  - { entity: 'Connection', label: 'Connection cyber', icon: 'globe'}
+        - { entity: 'Defectueux', label: 'Défectueux', icon: 'thumbs-down' }

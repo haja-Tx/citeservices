@@ -1,0 +1,110 @@
+{% extends '@!EasyAdmin/default/list.html.twig' %}
+
+{% set requestExtFilters = app.request.get('ext_filters', {}) %}
+{% set _request_parameters = _request_parameters|default({})|merge({
+    ext_filters: requestExtFilters
+}) %}
+
+{% block request_parameters_as_hidden %}
+  {% for field, value in requestExtFilters %}
+    {% if value is iterable %}
+      {% for val in value %}
+        <input type="hidden" name="ext_filters[{{ field }}][]" value="{{ val }}">
+      {% endfor %}
+    {% else %}
+      <input type="hidden" name="ext_filters[{{ field }}]" value="{{ value }}">
+    {% endif %}
+  {% endfor %}
+{% endblock %}
+
+{% block global_actions %}
+  {% if requestExtFilters|length > 0 %}
+    {% set requestExtFiltersPopover %}
+      <dl>
+        {% for filterKey, filterValue in requestExtFilters %}
+          <dt>{{ filterKey }}</dt>
+          <dd>{{ filterValue is iterable ? filterValue|join(',') : filterValue }}</dd>
+        {% endfor %}
+      </dl>
+    {% endset %}
+    <a href="#" class="btn" data-toggle="popover" data-content="{{ requestExtFiltersPopover|e('html_attr') }}" data-html="true" data-placement="left">
+      <i class="fa fa-filter text-warning"></i>
+    </a>
+  {% endif %}
+  {{ parent() }}
+{% endblock %}
+
+{# Do not display SEARCH form if not granted #}
+{% block search_action %}
+  {% if is_easyadmin_granted(_entity_config, 'search') %}
+    {{ parent() }}
+  {% endif %}
+{% endblock %}
+{# Adds request filters to the search form #}
+{% block search_form %}
+  {{ block('request_parameters_as_hidden') }}
+  {{ parent() }}
+{% endblock %}
+
+{# Do not display NEW button if not granted #}
+{% block new_action %}
+  {% if is_easyadmin_granted(_entity_config, 'new') %}
+    {{ parent() }}
+  {% endif %}
+{% endblock %}
+
+{# Do not display list action items if not granted #}
+{% block item_actions %}
+  {% set _list_item_actions = _list_item_actions|prune_item_actions(_entity_config, [], item) %}
+  {{ parent() }}
+{% endblock %}
+
+{% block list_form_filters %}
+  {% if _entity_config.list.form_filters is defined and _entity_config.list.form_filters is not empty %}
+  {% set list_form_filters = list_form_filters(_entity_config.list.form_filters) %}
+  <div id="list-form-filters">
+    <div id="list-form-filters-header" class="{{ not list_form_filters.vars.submitted ? 'collapsed' }}" role="button" data-toggle="collapse" data-target="#list-form-filters-form">
+      <strong>{{ 'list_form_filters.heading_title'|trans(_trans_parameters, 'EasyAdminBundle') }}</strong>
+      <em class="text-info pull-right">
+        <small>{{ 'list_form_filters.heading_expandcollapse'|trans(_trans_parameters, 'EasyAdminBundle') }}</small>
+      </em>
+    </div>
+    <form id="list-form-filters-form" class="collapse {{ list_form_filters.vars.submitted ? 'show' }}" method="GET" action="{{ path('easyadmin', _request_parameters) }}">
+      <div class="row">
+        <div class="col-11">
+          {% form_theme list_form_filters '@EasyAdmin/form/bootstrap_4.html.twig' %}
+          {{ block('request_parameters_as_hidden') }}
+          <input type="hidden" name="entity" value="{{ _request_parameters.entity }}">
+          <input type="hidden" name="sortField" value="{{ _entity_config.search.sort.field|default(_request_parameters.sortField) }}">
+          <input type="hidden" name="sortDirection" value="{{ _entity_config.search.sort.direction|default(_request_parameters.sortDirection) }}">
+          <input type="hidden" name="menuIndex" value="{{ _request_parameters.menuIndex }}">
+          <input type="hidden" name="submenuIndex" value="{{ _request_parameters.submenuIndex }}">
+          <div class="row">
+            {% for field in list_form_filters %}
+              <div class="col-4">{{ form_row(field) }}</div>
+            {% endfor %}
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="col-1">
+          <button class="btn btn-primary btn-block" style="height: 100%;" type="submit">
+            {{ 'list_form_filters.submit'|trans(_trans_parameters, 'EasyAdminBundle') }}
+          </button>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </form>
+  </div>
+  {% endif %}
+{% endblock %}
+
+{# Display FILTERS form if defined #}
+{% block main %}
+  {{ block('list_form_filters') }}
+  {{ parent() }}
+{% endblock %}
+
+{% block body_javascript %}
+  {{ parent() }}
+  {{ include('@EasyAdmin/default/includes/_select2_widget.html.twig') }}
+{% endblock %}

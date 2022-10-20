@@ -1,0 +1,169 @@
+
+  .btn 
+  {
+   outline:0;
+   border:none;
+   border-top:none;
+   border-bottom:none;
+   border-left:none;
+   border-right:none;
+   box-shadow:inset 2px -3px rgba(0,0,0,0.15);
+  }
+  .btn:focus
+  {
+   outline:0;
+   -webkit-outline:0;
+   -moz-outline:0;
+  }
+  .fullscreen_bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-image: url('../images/background.jpg');
+    background-repeat:repeat;
+  }
+  #connexion{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    left: 0;
+    right: 0;
+    z-index: 2;
+  }
+  .form-signin {
+    max-width: 280px;
+    padding: 15px;
+    margin: 0 auto;
+  }
+  .form-signin .form-signin-heading, .form-signin {
+    margin-bottom: 10px;
+  }
+  .form-signin .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: none;
+    border-left-style: solid;
+    border-color: #000;
+  }
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top-style: none;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-color: rgb(0,0,0);
+    border-top:1px solid rgba(0,0,0,0.08);
+  }
+  .form-signin-heading {
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 2px 2px rgba(0,0,0,0.5);
+  }
+  .actions a.hidden{
+    visibility: hidden!important;
+    display: none!important;
+  }
+  .link{
+    color: #fff;
+  }
+  .link:hover{
+    text-decoration: none;
+    color: #000;
+    font-style: bold;
+  }
+  .wrapper{
+    margin-top: 0px;
+    width: 100%;
+    
+    
+  }
+  
+.main-header {
+    background-color: #2269b5;
+    padding: 5px;
+    padding-right: 40px;
+    /*width: 100%;*/
+    color: #000;
+}
+span.user-name {
+    /*display: none;*/
+    color: #fff;
+    font-style: italic;
+    font-size: larger;
+}
+.user{
+  margin-top: 20%;
+}
+
+.navbar-custom-menu .user-avatar {
+    
+    max-height: 35px;
+    max-width: 35px;
+}
+.main-sidebar {
+    padding-left: 20px;
+    background-color: #e3e7ed; 
+}
+/* public/css/admin.css */
+:root {
+    /* make the backend contents as wide as the browser window */
+    --body-max-width: 100%;
+    /* change the background color of the <body> */
+    --body-bg: #f5f5f5;
+    /* make the base font size smaller */
+    --font-size-base: 13px;
+    /* remove all border radius to make corners straight */
+    --border-radius: 0px;
+}
+
+#circle {
+    position: absolute;
+    top: 50%;
+    left: 53%;
+    /*margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;*/
+    transform: translate(-50%,-50%);
+    width: 150px;
+    height: 150px;
+    z-index: 1;  
+}
+
+.loader {
+    width: calc(100% - 0px);
+    height: calc(100% - 0px);
+    border: 8px solid #162534;
+    border-top: 8px solid #09f;
+    border-radius: 50%;
+    animation: rotate 5s linear infinite;
+}
+@keyframes rotate {
+100% {transform: rotate(360deg);}
+} 
+.load{
+  min-height: 400px;
+}
+
+/*animation background*/

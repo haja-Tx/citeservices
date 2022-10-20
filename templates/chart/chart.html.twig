@@ -1,0 +1,17 @@
+
+    <div id="graph" class="row">
+          
+        <div id="div_chart2" class="col-md-6" ></div>
+        <div id="div_chart1" class="col-md-6" ></div>
+    </div>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+       
+        
+        {{ gc_draw(chart, 'div_chart1') }}
+        {{ gc_draw(chart2, 'div_chart2') }}
+    </script>
+
+
+

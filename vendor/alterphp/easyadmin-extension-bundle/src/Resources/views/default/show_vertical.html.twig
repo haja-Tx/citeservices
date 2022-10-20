@@ -1,0 +1,15 @@
+{% extends '@EasyAdminExtension/default/show.html.twig' %}
+
+{% block main %}
+  <div class="form-vertical">
+    {{ block('show_fields') }}
+  </div>
+
+  <section class="content-footer">
+    <div class="form-actions">
+      {{ block('item_actions') }}
+    </div>
+  </section>
+
+  {{ block('delete_form') }}
+{% endblock %}

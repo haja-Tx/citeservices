@@ -1,0 +1,18 @@
+extensions:
+  FriendsOfPhpSpec\PhpSpec\CodeCoverage\CodeCoverageExtension:
+    format:
+      - text
+      - clover
+    whitelist:
+      - src
+    blacklist:
+      - src/DependencyInjection
+    blacklist_files:
+      - src/JeckelLabAdvancedTypesBundle.php
+    output:
+      clover: phpspec-coverage.xml
+
+suites:
+  jlab_suite:
+    namespace: JeckelLab\AdvancedTypes
+    psr4_prefix: JeckelLab\AdvancedTypes

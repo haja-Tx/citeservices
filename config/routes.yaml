@@ -1,0 +1,11 @@
+home:
+   path: /private
+   controller: App\Controller\AdminController
+
+security_login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+# dashboard:
+#     path: /admin
+#     controller: App\Controller\Admin\DashboardController::index

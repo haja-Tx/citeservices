@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+	<file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+		<body>
+			<!-- misc -->
+			<trans-unit id="open.new_tab">
+				<source>open.new_tab</source>
+				<target>Ouvrir dans un nouvel onglet</target>
+			</trans-unit>
+			<!-- list_form_filters -->
+			<trans-unit id="list_form_filters.heading_title">
+				<source>list_form_filters.heading_title</source>
+				<target>Filtres</target>
+			</trans-unit>
+			<trans-unit id="list_form_filters.heading_expandcollapse">
+				<source>list_form_filters.heading_expandcollapse</source>
+				<target>Ouvrir / Fermer</target>
+			</trans-unit>
+			<trans-unit id="list_form_filters.submit">
+				<source>list_form_filters.submit</source>
+				<target>Filtrer</target>
+			</trans-unit>
+			<trans-unit id="list_form_filters.default.boolean.true">
+				<source>list_form_filters.default.boolean.true</source>
+				<target>Oui</target>
+			</trans-unit>
+			<trans-unit id="list_form_filters.default.boolean.false">
+				<source>list_form_filters.default.boolean.false</source>
+				<target>Non</target>
+			</trans-unit>
+			<!-- confirm_modal -->
+			<trans-unit id="confirm_modal.content">
+				<source>confirm_modal.content</source>
+				<target>Êtes-vous sûr(e) ?</target>
+			</trans-unit>
+			<trans-unit id="confirm_modal.action">
+				<source>confirm_modal.action</source>
+				<target>Confirmer</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

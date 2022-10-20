@@ -1,0 +1,9 @@
+{% block export_csv %}
+      {% set referer = app.request.server.get('http-referer')|default('/') %}
+    <div class="btn-group pull-right">
+        <a class="btn btn-primary" href="{{ path('easyadmin', app.request.query|merge({ action: "export" })) }}" target="_blank">
+          <i class="fa fa-file-excel-o"></i>
+          {{ 'app.export_csv'|trans }}
+        </a>
+    </div>
+    {% endblock export_csv %}

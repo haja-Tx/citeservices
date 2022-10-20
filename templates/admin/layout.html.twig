@@ -1,0 +1,8 @@
+{# app/Resources/views/easy_admin/layout.html.twig #}
+{% extends '@EasyAdmin/default/layout.html.twig' %}
+
+{% block header_logo %}
+    <a href="{{ path('admin', {entity: 'Vente', action: 'list'}) }}">
+        test
+    </a>
+{% endblock header_logo %}

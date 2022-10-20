@@ -1,0 +1,11 @@
+{% extends '@!EasyAdmin/default/layout.html.twig' %}
+
+{% block header_custom_menu %}
+    {% set _user_name %}{{ _user_name }} {{ notification_badge() }}{% endset %}
+    {{ parent() }}
+{% endblock header_custom_menu %}
+
+{% block user_menu %}
+    {% include '@JeckelLabNotification/menu/user_menu_item.html.twig' %}
+    {{ parent() }}
+{% endblock user_menu %}

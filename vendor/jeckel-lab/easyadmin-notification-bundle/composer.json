@@ -1,0 +1,36 @@
+{
+    "name": "jeckel-lab/easyadmin-notification-bundle",
+    "description": "Symfony's Easyadmin simple notification's bundle",
+    "type": "symfony-bundle",
+    "require": {
+        "jeckel-lab/advanced-types": "^0.2",
+        "jeckel-lab/clock": "^0.1.0",
+        "easycorp/easyadmin-bundle": "^2.3"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master",
+        "phpro/grumphp": "^0.17.1",
+        "squizlabs/php_codesniffer": "^3.5",
+        "phpmd/phpmd": "^2.8",
+        "phpstan/phpstan": "^0.12.3",
+        "phpunit/phpunit": "^8.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Julien Mercier-Rojas",
+            "email": "devci@j3ck3l.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "JeckelLab\\NotificationBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\JeckelLab\\NotificationBundle\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable"
+}

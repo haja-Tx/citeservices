@@ -1,0 +1,34 @@
+easy_admin:
+    entities:
+       Facture:
+          # controller: App\Controller\FactureController
+          class: App\Entity\Facture
+          export:
+          disabled_actions: ['delete']
+          list:
+            actions: 
+              - { name: 'imprimer', icon: 'file-pdf', css_class: 'btn btn-default', label: 'fichier pdf' }
+              - { name: 'edit', icon: 'pencil', css_class: 'btn btn-default' }
+              - { name: 'delete', icon: 'trash', css_class: 'btn btn-danger', label: false, }
+              - { name: 'show', icon: 'eye', label: false }
+          new:
+            fields:
+              - { property: 'date' ,type: 'datetime',type_options: {disabled: true}}
+              - name
+              - { property: 'ventes', type: 'collection', type_options: {entry_type: 'App\Form\VenteType'}}
+              - connexion
+              - { property: 'total', type: 'hidden', type_options: { empty_data: 0, required: false } }
+              - { property: 'note', label: 'Type', type: 'choice', type_options: { choices: {'Facture':'facture','Proforma':'facture proforma'}, required: true } }
+          show:
+            actions: 
+              - { name: 'imprimer', icon: 'print', css_class: 'btn btn-info' }
+              
+          edit:
+            fields:
+              - { property: 'date' ,type: 'datetime',type_options: {disabled: true}}
+              - name
+              - { property: 'ventes', type: 'collection', type_options: {entry_type: 'App\Form\VenteType', by_reference: false}}
+              - connexion
+              - { property: 'total', type: 'hidden', type_options: { empty_data: 0, required: false } }
+              - { property: 'note', type: 'choice', type_options: { choices: {'Facture':'facture','Proforma':'facture proforma'}, required: true } }
+          

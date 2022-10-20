@@ -1,0 +1,19 @@
+easy_admin:
+    design:
+      brand_color: '#2269b5'
+      assets:
+          css:
+             - 'assets/css/style.css'
+          js:
+             - 'assets/js/calcul.js'
+          favicon: 'assets/images/favicon.png'
+    site_name: '<img src="../assets/images/logoheader.png" style="width:35%"/>'
+    user:
+        name_property_path: 'pseudo'
+        avatar_property_path: 'imagePath'
+    formats:
+        date: 'd/m/Y H:i:s'
+        time: 'H:i'
+        datetime: 'd/m/Y H:i:s'
+    
+  
